@@ -321,7 +321,7 @@ nullsec-flipper-suite/
 
 | Project | Description |
 |---------|-------------|
-| [nullsec-pineapple-suite](https://github.com/bad-antics/nullsec-pineapple-suite) | 96+ WiFi Pineapple Pager payloads |
+| [nullsec-pineapple-suite](https://github.com/bad-antics/nullsec-pineapple-suite) | 106 WiFi Pineapple Pager payloads |
 | [nullsec-linux](https://github.com/bad-antics/nullsec-linux) | Security-focused Linux distro |
 | [nullsec-exploit](https://github.com/bad-antics/nullsec-exploit) | Exploit development framework |
 | [marshall](https://github.com/bad-antics/marshall) | NullSec Privacy Browser |
